@@ -59,6 +59,13 @@ func QueueStatuses(ctx context.Context, client Client, actionID, queue string) (
 	})
 }
 
+// QueueStatuses show status all members in queue.
+func QueueEntries(ctx context.Context, client Client, actionID, queue string) ([]Response, error) {
+	return requestList(ctx, client, "QueueStatus", actionID, "QueueEntry", "QueueStatusComplete", map[string]string{
+		"Queue": queue,
+	})
+}
+
 // QueueSummary show queue summary.
 func QueueSummary(ctx context.Context, client Client, actionID, queue string) ([]Response, error) {
 	return requestList(ctx, client, "QueueSummary", actionID, "QueueSummary", "QueueSummaryComplete", map[string]string{
